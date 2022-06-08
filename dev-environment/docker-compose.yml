@@ -1,0 +1,33 @@
+# Use admin/TokyoJoe138! as user/password credentials
+# mongodb://admin:TokyoJoe138!@localhost:27017/
+version: '3.1'
+
+services:
+  oncalldeveloperapi:
+    image: oncalldeveloperapi:v0.1
+    ports:
+      - 1338:80
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: TokyoJoe138!
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: TokyoJoe138!
+      ME_CONFIG_MONGODB_URL: mongodb://admin:TokyoJoe138!@mongo:27017/
+volumes:
+  mongo-data:

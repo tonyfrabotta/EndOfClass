@@ -1,0 +1,19 @@
+### Get The Status
+GET http://localhost:1337/status HTTP/1.1
+Accept: application/json
+
+
+### POST a New Status
+
+POST http://localhost:1337/status HTTP/1.1
+Content-Type: application/json
+
+{
+    "message": "Taco Tuesday is Tomorrow!"
+}
+
+
+### GET An Employee
+
+GET http://localhost:1337/employees/bob-smith
+Accept: image/*
